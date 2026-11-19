@@ -14,3 +14,8 @@ def client(app):
 def test_homepage(client):
     response = client.get('/')
     assert response.status_code == 200
+
+@pytest.fixture
+def test_view(client):
+    resposne = client.post('/', data={"name": "marek"})
+    assert b'marek' in resposne.data
